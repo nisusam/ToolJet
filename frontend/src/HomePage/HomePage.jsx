@@ -8,7 +8,8 @@ import { BlankPage } from './BlankPage';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { renderTooltip } from '@/_helpers/appUtils';
 import { toast } from 'react-toastify';
-import moment from 'moment';
+import * as dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -250,6 +251,7 @@ class HomePage extends React.Component {
       isDeletingApp,
       isImportingApp,
     } = this.state;
+    dayjs.extend(relativeTime);
     return (
       <div className="wrapper home-page">
         <ConfirmDialog
@@ -353,7 +355,7 @@ class HomePage extends React.Component {
                                   <td className="col p-3">
                                     <span className="app-title mb-3">{app.name}</span> <br />
                                     <small className="pt-2 app-description">
-                                      created {moment(app.created_at).fromNow(true)} ago by {app.user?.first_name}{' '}
+                                      created {dayjs(app.created_at).fromNow(true)} ago by {app.user?.first_name}{' '}
                                       {app.user?.last_name}{' '}
                                     </small>
                                   </td>

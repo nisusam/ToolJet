@@ -43,7 +43,7 @@ return data.filter(row => row.amount > 1000);`;
         <div>
           <div className="alert alert-success" role="alert">
             Transformations can be used to transform the results of queries. All the app variables are accessible from
-            transformers and supports JS libraries such as Lodash & Moment.{' '}
+            transformers and supports JS libraries such as Lodash & Dayjs.{' '}
             <a href="https://docs.tooljet.io/docs/tutorial/transformations" target="_blank" rel="noreferrer">
               Read documentation
             </a>

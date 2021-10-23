@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { getDynamicVariables, resolveReferences, serializeNestedObjectToQueryParams } from '@/_helpers/utils';
 import { dataqueryService } from '@/_services';
 import _ from 'lodash';
-import moment from 'moment';
+import * as dayjs from 'dayjs';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { componentTypes } from '../Editor/Components/components';
 
@@ -47,13 +47,13 @@ export function fetchOAuthToken(authUrl, dataSourceId) {
 
 export function runTransformation(_ref, rawData, transformation, query) {
   const data = rawData;
-  const evalFunction = Function(['data', 'moment', '_', 'components', 'queries', 'globals'], transformation);
+  const evalFunction = Function(['data', 'dayjs', '_', 'components', 'queries', 'globals'], transformation);
   let result = [];
 
   const currentState = _ref.state.currentState || {};
 
   try {
-    result = evalFunction(data, moment, _, currentState.components, currentState.queries, currentState.globals);
+    result = evalFunction(data, dayjs, _, currentState.components, currentState.queries, currentState.globals);
   } catch (err) {
     console.log('Transformation failed for query: ', query.name, err);
     result = { message: err.stack.split('\n')[0], status: 'failed', data: data };

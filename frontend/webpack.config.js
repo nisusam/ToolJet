@@ -82,7 +82,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /(en)$/),
+    new webpack.ContextReplacementPlugin(/dayjs[/\\]locale$/, /(en)$/),
   ],
   devServer: {
     historyApiFallback: true,

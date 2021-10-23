@@ -3,7 +3,8 @@ import usePinnedPopover from '@/_hooks/usePinnedPopover';
 import { LeftSidebarItem } from './sidebar-item';
 import ReactJson from 'react-json-view';
 import _ from 'lodash';
-import moment from 'moment';
+import * as dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { SidebarPinnedButton } from './SidebarPinnedButton';
 
 export const LeftSidebarDebugger = ({ darkMode, errors }) => {
@@ -60,7 +61,7 @@ export const LeftSidebarDebugger = ({ darkMode, errors }) => {
           description: value.data.description,
           options: { name: variableNames.options, data: value.options },
           response: { name: variableNames.response, data: value.data.data },
-          timestamp: moment(),
+          timestamp: dayjs(),
         });
       });
 
@@ -162,6 +163,7 @@ export const LeftSidebarDebugger = ({ darkMode, errors }) => {
 
 function ErrorLogsComponent({ errorProps, idx, darkMode }) {
   const [open, setOpen] = React.useState(false);
+  dayjs.extend(relativeTime);
   return (
     <div className="tab-content" key={`${errorProps.key}-${idx}`}>
       <p className="text-azure" onClick={() => setOpen((prev) => !prev)}>
@@ -174,7 +176,7 @@ function ErrorLogsComponent({ errorProps, idx, darkMode }) {
         [{_.capitalize(errorProps.type)} {errorProps.key}] &nbsp;
         <span className="text-red">{`${_.startCase(errorProps.type)} Failed: ${errorProps.message}`} .</span>
         <br />
-        <small className="text-muted px-1">{moment(errorProps.timestamp).fromNow()}</small>
+        <small className="text-muted px-1">{dayjs(errorProps.timestamp).fromNow()}</small>
       </p>
 
       <div className={` queryData ${open ? 'open' : 'close'} py-0`}>

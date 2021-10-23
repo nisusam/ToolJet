@@ -1,4 +1,4 @@
-import moment from 'moment';
+import * as dayjs from 'dayjs';
 import _ from 'lodash';
 
 export function findProp(obj, prop, defval) {
@@ -44,14 +44,14 @@ export function resolveReferences(object, state, defaultValue, customObjects = {
 
         try {
           const evalFunction = Function(
-            ['components', 'queries', 'globals', 'moment', '_', ...Object.keys(customObjects)],
+            ['components', 'queries', 'globals', 'dayjs', '_', ...Object.keys(customObjects)],
             `return ${code}`
           );
           result = evalFunction(
             state.components,
             state.queries,
             state.globals,
-            moment,
+            dayjs,
             _,
             ...Object.values(customObjects)
           );

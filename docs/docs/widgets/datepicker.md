@@ -11,7 +11,7 @@ Default date format is **DD/MM/YYYY** .
 :::
 
 :::tip
-Date format should be followed as ISO 8601 as mentioned in the [moment documentation](https://momentjs.com/docs/) .
+Date format should be followed as ISO 8601 as mentioned in the [dayjs documentation](https://day.js.org/docs/en/installation/installation) .
 :::
 
 <img class="screenshot-full" src="/img/widgets/datepicker/datepicker.gif" alt="ToolJet - Widget Reference - Datepicker" height="420"/>
